@@ -45,3 +45,40 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
+
+const checkUsername = () =>{
+    
+    let valid = false;
+
+    const min = 3,
+          max = 25;
+
+    const username = usernameEl.value.trim()
+
+    if(!isRequired(username)){
+        showError(usernameEl, 'username cannot be blank1!');
+    }else if(!isBetween(username.length, min,max)){
+        showError(usernameEl,`username must be between ${min} and ${max}`);
+    }else{
+        showSuccess(usernameEl);
+        valid = true;
+    }
+    return valid;
+}
+
+
+const chechEmail = () => {
+
+    let valid = false;
+    const email = emailEl.value.trim()
+
+    if(!isRequired(email)){
+        showError(emailEl, `Email cannot be blank!`)
+    }else if(isEmailValid(email)){
+        showError(emailEl, 'Email is not valid!')
+    }else {
+        showSuccess(email)
+        valid = true;
+    }
+    return valid;
+}
