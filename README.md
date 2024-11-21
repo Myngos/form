@@ -1,2 +1,2 @@
 # form
-form-validation in javaScript
+client-side validation in javaScript
