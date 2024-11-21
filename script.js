@@ -7,6 +7,22 @@ const form = document.querySelector('#signup');
 
 form.addEventListener('submit', function(e){
     e.preventDefault()//prevents the form from submtting 
+
+    let isUsernameValid = checkUsername(),
+        isEmailValid = checkEmail(),
+        isPasswordValid = checkPassword(),
+        isConfirmPasswordValid =checkconfirmPassword();
+
+    let isFormValid = isUsernameValid &&
+        isEmailValid &&
+        isPasswordValid &&
+        isConfirmPasswordValid;
+
+
+    //submit to the server if form is valid
+    if(isFormValid){
+        
+    }
 })
 
 const isRequired = value => value === '' ? flase : true;
@@ -67,7 +83,7 @@ const checkUsername = () =>{
 }
 
 
-const chechEmail = () => {
+const checkEmail = () => {
 
     let valid = false;
     const email = emailEl.value.trim()
@@ -99,7 +115,7 @@ const checkPassword = () =>{
     return valid
 }
 
-const confirmPassword = () => {
+const checkconfirmPassword = () => {
 
     let valid = true;
     const confirmPassword = confrimPasswordEl.value.trim()
@@ -114,3 +130,4 @@ const confirmPassword = () => {
     }
     return valid
 }
+
