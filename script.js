@@ -18,7 +18,7 @@ const isEmailValid = (email) => {
     return re.test(email);
 }
 
-const isPasswordStrong = (password)=>{
+const isPasswordSecure = (password)=>{
     const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     return re.test(password);
 }
@@ -74,11 +74,43 @@ const chechEmail = () => {
 
     if(!isRequired(email)){
         showError(emailEl, `Email cannot be blank!`)
-    }else if(isEmailValid(email)){
+    }else if(!isEmailValid(email)){
         showError(emailEl, 'Email is not valid!')
     }else {
-        showSuccess(email)
+        showSuccess(emailEl)
         valid = true;
     }
     return valid;
+}
+
+const checkPassword = () =>{
+    let valid = false;
+    const password = passwordEl.value.trim()
+
+    if(!isRequired(password)){
+        showError(passwordEl, 'Email cannot be blank!');
+    }else if(!isPasswordSecure(password)){
+        showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+    }else{
+        showSuccess(passwordEl);
+        valid = true;
+    }
+
+    return valid
+}
+
+const confirmPassword = () => {
+
+    let valid = true;
+    const confirmPassword = confrimPasswordEl.value.trim()
+
+    if(!isRequired(confirmPassword)){
+        showError(confrimPasswordEl, 'Password cannot be blank!');
+    }else if(password !== confirmPassword){
+        showError(confrimPasswordEl, 'Passwords do not match!');
+    }else{
+        showSuccess(confirmPassword);
+        valid = true;
+    }
+    return valid
 }
